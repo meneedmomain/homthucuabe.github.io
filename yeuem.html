@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Message Generator</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #444;
+      }
+
+      button {
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 10px;
+        padding: 10px;
+        transition: background-color 0.3s;
+      }
+      button {
+  /* ... */
+  display: block;
+  margin: 0 auto;
+}
+
+      button:hover {
+        background-color: #3e8e41;
+      }
+
+      #message-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+      }
+
+      #message {
+        color: #444;
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+      }
+
+      #close-button {
+        background-color: #f44336;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        padding: 10px;
+        transition: background-color 0.3s;
+      }
+
+      #close-button:hover {
+        background-color: #d32f2f;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Hộp thư của bé</h1>
+    </p> Đây là những điều anh muốn nói với bé, những lúc bé buồn, bé không ổn, bé thất vọng, bé tủi thân hãy nhẫn vào một nút dưới này nhé. Nó sẽ hiện ra ngẫu nhiên một câu mà anh muốn nói với bé đó</p>
+      <div>
+        <button onclick="displayRandomMessage(messages1)">Khi bé buồn hoặc thất vọng</button>
+        <button onclick="displayRandomMessage(messages2)">Khi bé cảm thấy tủi thân</button>
+        <button onclick="displayRandomMessage(messages3)">Khi bé thấy mệt mỏi</button>
+      </div>
+
+      <div id="message-container">
+        <p id="message"></p>
+        <button id="close-button" onclick="closePopup()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      var messages1 = [
+        "Bé yêu ơi, đừng buồn nữa nhé. Anh sẽ luôn ở đây bên mặt trời của anh, luôn sẵn sàng lắng nghe và cùng bé vượt qua mọi khó khăn",
+        "Anh biết bé đang buồn và cảm thấy khó khăn, nhưng hãy nhớ rằng anh yêu bé lắm và sẽ luôn ở đây để hỗ trợ bé trong mọi tình huống đó nha. ",
+        "Anh hiểu cảm giác của bé anh biết mọi chuyện khó khăn và muốn nói với bé rằng, dù cho có điều gì xảy ra thì anh vẫn sẽ yêu em như thế này.",
+        "Anh biết bé đang buồn lắm nhưng mà anh tin rằng chúng ta sẽ vượt qua mọi chuyện cùng nhau. Có anh ở đây với bé rồi nhé",
+        "Nào mặt trời của anh ngoan nào, bé bình tĩnh lại nhé, mọi chuyện sẽ ổn thôi",
+      ];
+
+      var messages2 = [
+        "Mọi thứ sẽ ổn thôi. Dù có điều gì xảy ra, em và anh vẫn sẽ cùng vượt qua, cùng cười, cùng yêu nhau. Bé cứ tin anh nhé!",
+        "Em biết không? Những lúc khó khăn nhất, anh lại càng yêu em nhiều hơn. Bé đừng buồn nữa nhé",
+        "Dù em đang trải qua những khó khăn và tủi thân, nhưng em luôn là người đáng yêu và quan trọng nhất với anh. Anh sẽ là người luôn đồng hành và giúp em vượt qua mọi chuyện",
+        "Em luôn là ánh sáng của anh. Dù có điều gì xảy ra, anh sẽ luôn ở bên cạnh em",
+        "Em là món quà tuyệt vời nhất mà cuộc đời tặng cho anh. Anh yêu em nhiều lắm",
+      ];
+
+      var messages3 = [
+        "Em đang làm rất tốt rồi í mặt trời nhỏ của anh ạ, nghỉ ngơi một xíu nào",
+        "Anh biết em đang rất mệt mỏi, anh thương bé lắm, bé uống nước hoặc kiếm gì ăn đi nhé hic, anh yêu bé nhiều",
+        "Nghỉ ngơi nào bé, thở thật sâu, thả lòng vả thư dãnh nhé mặt trời của anh",
+        "Anh yêu bé nhiều lắm, bé cố lên nhá, anh tin bé làm được. Lấy cốc nước, ăn ít kẹo đã nhaa.",
+        "Bé yêu của anh cố lên nha, anh yêu bé nhiều, nghỉ ngơi xíu đi đã nhéee",
+      ];
+
+      function displayRandomMessage(messages) {
+        var randomIndex = Math.floor(Math.random() * messages.length);
+        var selectedMessage = messages[randomIndex];
+        var messageElement = document.getElementById("message");
+       
+        messageElement.textContent = selectedMessage;
+    var messageContainer = document.getElementById("message-container");
+    messageContainer.style.display = "block";
+  }
+  function displayRandomMessage(messages) {
+  var messageContainer = document.getElementById("message-container");
+  var messageElement = document.getElementById("message");
+  var randomIndex = Math.floor(Math.random() * messages.length);
+  var selectedMessage = messages[randomIndex];
+  
+  // Check if the selected message is already displayed
+  if (messageElement.textContent === selectedMessage) {
+    // If yes, call the function again to display a different message
+    displayRandomMessage(messages);
+    return;
+  }
+
+  messageElement.textContent = selectedMessage;
+  messageContainer.style.display = "block";
+}
+
+
+  function closePopup() {
+    var messageContainer = document.getElementById("message-container");
+    messageContainer.style.display = "none";
+  }
+</script>
+</body>
+</html>
